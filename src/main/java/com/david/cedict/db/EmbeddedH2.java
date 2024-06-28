@@ -29,10 +29,10 @@ public class EmbeddedH2 {
     public void createVSM() {
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection("jdbc:h2:./data/vsm", "sa", "");
+            connection = DriverManager.getConnection("jdbc:h2:./src/main/resources/data/vsm", "sa", "");
             Statement vsmStatement = connection.createStatement();
             vsmStatement.execute("CREATE TABLE IF NOT EXISTS vsm");
-            connection = DriverManager.getConnection("jdbc:h2:./data/cedictdb", "sa", "");
+            connection = DriverManager.getConnection("jdbc:h2:./src/main/resources/data/cedictdb", "sa", "");
             Statement dbStatement = connection.createStatement();
             VectorSpaceModelDB vsm = new VectorSpaceModelDB(vsmStatement, dbStatement);
             vsm.runVSM();

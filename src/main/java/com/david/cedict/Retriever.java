@@ -48,9 +48,9 @@ public class Retriever {
 
     public Retriever() {
         try {
-            Connection connection = DriverManager.getConnection("jdbc:h2:./data/cedictdb", "sa", "");
+            Connection connection = DriverManager.getConnection("jdbc:h2:./src/main/resources/data/cedictdb", "sa", "");
             dbStatement = connection.createStatement();
-            connection = DriverManager.getConnection("jdbc:h2:./data/vsm", "sa", "");
+            connection = DriverManager.getConnection("jdbc:h2:./src/main/resources/data/vsm", "sa", "");
             vsmStatement = connection.createStatement();
             Utility.deserializeInvertedIndex(dbStatement, invertedIndex, idToMaxTf);
         } catch (SQLException e) {
