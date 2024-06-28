@@ -27,7 +27,8 @@ public class GUI extends JFrame implements NativeKeyListener {
 
     private static final Color TEXT_COLOR = new Color(219,219,219);
     private static final Color BG_COLOR = new Color(48,48,48);
-    private static final Color PANEL_COLOR = new Color(84,84,84);
+    private static final Color PANEL_COLOR = new Color(100,100,100);
+    private static final Color ERROR_COLOR = new Color(168, 99, 99);
 
     private final int SCREEN_WIDTH = 600;
     private final int SCREEN_HEIGHT = 400;
@@ -56,7 +57,6 @@ public class GUI extends JFrame implements NativeKeyListener {
                 data = (String) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor);
             } catch (UnsupportedFlavorException | IOException | InterruptedException ex) {
                 panels.add(createErrorPanel());
-                System.out.println(panels.size());
                 updateUI();
                 ex.printStackTrace();
             }
@@ -64,14 +64,22 @@ public class GUI extends JFrame implements NativeKeyListener {
             data = data.toLowerCase();
             System.out.println(data);
             PriorityQueue<Retriever.ScoreEntry> ranking = r.outputRanking(data);
-            List<JPanel> newPanels = new ArrayList<>();
-            while (ranking.size() > 0) {
-                Retriever.ScoreEntry top = ranking.poll();
-                Entry entry = top.getEntry();
-                newPanels.add(createNewPanel(entry));
+            if (ranking.size() == 0) {
+                System.out.println("GERE");
+                panels.add(createErrorPanel());
+                updateUI();
             }
-            this.panels = newPanels;
-            updateUI();
+            else {
+                List<JPanel> newPanels = new ArrayList<>();
+                while (ranking.size() > 0) {
+                    Retriever.ScoreEntry top = ranking.poll();
+                    Entry entry = top.getEntry();
+                    newPanels.add(createNewPanel(entry));
+                }
+                this.panels = newPanels;
+                updateUI();
+            }
+
         }
         if ((e.getKeyCode() == NativeKeyEvent.VC_CONTROL)) {
             ctrlDown = true;
@@ -103,7 +111,7 @@ public class GUI extends JFrame implements NativeKeyListener {
         simpLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         pinyinLabel.setForeground(TEXT_COLOR);
-        pinyinLabel.setFont(new Font("DengXian", Font.BOLD, 14));
+        pinyinLabel.setFont(new Font("DengXian", Font.BOLD, 18));
         pinyinLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Create a JTextArea for the englishLabel to support text wrapping
@@ -135,13 +143,17 @@ public class GUI extends JFrame implements NativeKeyListener {
 
     private JPanel createErrorPanel() {
         JPanel panel = new JPanel();
-        JLabel label = new JLabel("Error: please try again.");
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        JLabel label = new JLabel("Invalid selection, please try again.");
 
-        label.setForeground(TEXT_COLOR);
+        label.setForeground(ERROR_COLOR);
         label.setFont(new Font("DengXian", Font.PLAIN, 24));
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        panel.setBackground(BG_COLOR);
+        panel.add(Box.createVerticalGlue());
         panel.add(label);
+        panel.add(Box.createVerticalGlue());
         return panel;
     }
 
@@ -183,7 +195,11 @@ public class GUI extends JFrame implements NativeKeyListener {
 
         panels.add(panel);
         updateUI();
-
+        wipePanels();
     }
 
+    public void wipePanels() {
+        this.panels.clear();
+    }
 }
+
