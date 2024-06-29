@@ -1,0 +1,6 @@
+2024-06-29 00:11:11.496371+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INVERTEDINDEX" not found (this database is empty); SQL statement:
+SELECT * FROM InvertedIndex [42104-224]
+2024-06-29 00:11:11.567559+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ENTRIES" not found (this database is empty); SQL statement:
+SELECT * FROM entries [42104-224]

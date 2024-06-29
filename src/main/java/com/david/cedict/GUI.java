@@ -56,6 +56,7 @@ public class GUI extends JFrame implements NativeKeyListener {
                 Thread.sleep(250);
                 data = (String) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor);
             } catch (UnsupportedFlavorException | IOException | InterruptedException ex) {
+                wipePanels();
                 panels.add(createErrorPanel());
                 updateUI();
                 ex.printStackTrace();
@@ -65,7 +66,7 @@ public class GUI extends JFrame implements NativeKeyListener {
             System.out.println(data);
             PriorityQueue<Retriever.ScoreEntry> ranking = r.outputRanking(data);
             if (ranking.size() == 0) {
-                System.out.println("GERE");
+                wipePanels();
                 panels.add(createErrorPanel());
                 updateUI();
             }
