@@ -16,3 +16,14 @@ Simple lightweight desktop language assistant which translates user highlighted 
 
 ## (Optional)
 After modification, build then run ```java -jar ./target/cedict-jar-with-dependencies.jar setup``` to revalidate the embedded databases
+
+## Examples
+![image](https://github.com/davidhaoyan/CEDictLanguageAssistant/assets/60042375/808cf71b-2944-409d-9b80-ddb2824c2282)
+
+![image](https://github.com/davidhaoyan/CEDictLanguageAssistant/assets/60042375/ae500def-ad4d-4554-bcce-6dbf9af4d563)
+
+![image](https://github.com/davidhaoyan/CEDictLanguageAssistant/assets/60042375/622de0ba-2d4d-48f4-a6b7-38e93da982d2)
+
+![image](https://github.com/davidhaoyan/CEDictLanguageAssistant/assets/60042375/57c5678e-aee4-4919-83f4-24565beca0c7)
+
+
