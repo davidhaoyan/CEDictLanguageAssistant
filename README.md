@@ -1,5 +1,5 @@
 # CEDict Language Assistant
-Simple lightweight desktop language assistant which translates user highlighted text from Mandarin to English, to aid in vocabulary learning. Written in Java, using the H2 database engine and Swing for GUI.  
+Simple lightweight desktop language assistant which translates user highlighted text from English to Mandarin, to aid in vocabulary learning. Written in Java, using the H2 database engine and Swing for GUI.  
 
 ## Requirements
 - Java 17 or later
